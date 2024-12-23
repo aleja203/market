@@ -5,6 +5,8 @@ import com.atenea.market.Entidades.Producto;
 import com.atenea.market.Entidades.Rubro;
 import com.atenea.market.Entidades.SubRubro;
 import java.util.List;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -32,6 +34,8 @@ long countBySubRubro(SubRubro subRubro);
 @Query("SELECT p FROM Producto p")
 List<Producto> obtenerTodos();
 
+ @Query("SELECT p FROM Producto p LEFT JOIN FETCH p.imagenPrincipal WHERE p.id = :id")
+    Optional<Producto> obtenerProductoConImagenPrincipal(@Param("id") String id);
     
 }
 

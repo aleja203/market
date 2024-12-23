@@ -7,8 +7,7 @@ public class ImagenDTO {
     private String nombre;
     private byte[] contenido;
 
-    public ImagenDTO() {
-    }
+    public ImagenDTO() {}
 
     public String getMimeType() {
         return mimeType;
@@ -33,7 +32,4 @@ public class ImagenDTO {
     public void setContenido(byte[] contenido) {
         this.contenido = contenido;
     }
-
-   
 }
-

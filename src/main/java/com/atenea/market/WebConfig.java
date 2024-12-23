@@ -1,7 +1,10 @@
 
 package com.atenea.market;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -16,4 +19,16 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("*") // Permite todos los encabezados
                 .allowCredentials(true); // Permite el uso de cookies o credenciales
     }
+    
+        @Bean
+    public Jackson2ObjectMapperBuilder jacksonBuilder() {
+        return Jackson2ObjectMapperBuilder.json().indentOutput(true);
+    }
+
+    // Si deseas un ObjectMapper personalizado
+    @Bean
+    public ObjectMapper objectMapper() {
+        return Jackson2ObjectMapperBuilder.json().indentOutput(true).build();
+    }
+    
 }

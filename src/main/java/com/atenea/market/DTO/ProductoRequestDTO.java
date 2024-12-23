@@ -1,16 +1,10 @@
 
 package com.atenea.market.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
 import java.util.List;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductoDTO {
+public class ProductoRequestDTO {
+
     private String codigo;
     private String nombre;
     private String descripcion;
@@ -22,30 +16,10 @@ public class ProductoDTO {
     private Double existencia;
     private Double costo;
     private Double precioVenta;
-  
-    private String imagenPrincipal;
-    
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
-    @JsonProperty("galeria_imagenes")
-    private List<String> galeriaImagenes;
+    private ImagenDTO imagenPrincipal;
+    private List<ImagenDTO> galeriaImagenes;
 
-        public ProductoDTO() {
-    }
-
-    public ProductoDTO(String codigo, String nombre, String descripcion, String etiqueta, String especificaciones, Boolean estado, Double existencia, Double costo, Double precioVenta, List<String> galeriaImagenes) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.etiqueta = etiqueta;
-        this.especificaciones = especificaciones;
-        this.estado = estado;
-        this.rubroId = rubroId;
-        this.subRubroId = subRubroId;
-        this.existencia = existencia;
-        this.costo = costo;
-        this.precioVenta = precioVenta;
-        this.imagenPrincipal = imagenPrincipal;
-        this.galeriaImagenes = galeriaImagenes;
+    public ProductoRequestDTO() {
     }
 
     public String getCodigo() {
@@ -136,22 +110,22 @@ public class ProductoDTO {
         this.precioVenta = precioVenta;
     }
 
-    public String getImagenPrincipal() {
+    public ImagenDTO getImagenPrincipal() {
         return imagenPrincipal;
     }
 
-    public void setImagenPrincipal(String imagenPrincipal) {
+    public void setImagenPrincipal(ImagenDTO imagenPrincipal) {
         this.imagenPrincipal = imagenPrincipal;
     }
 
-    public List<String> getGaleriaImagenes() {
+    public List<ImagenDTO> getGaleriaImagenes() {
         return galeriaImagenes;
     }
 
-    public void setGaleriaImagenes(List<String> galeriaImagenes) {
+    public void setGaleriaImagenes(List<ImagenDTO> galeriaImagenes) {
         this.galeriaImagenes = galeriaImagenes;
     }
-
+    
     
     
 }

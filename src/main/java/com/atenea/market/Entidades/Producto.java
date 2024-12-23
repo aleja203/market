@@ -1,13 +1,20 @@
 
 package com.atenea.market.Entidades;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Producto {
@@ -17,6 +24,7 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private String etiqueta; // Para filtrados y búsqueda (por ejemplo, "nuevo", "orgánico".
+    @Column(length = 1000) // Si está definido así, restringe el tamaño a 255
     private String especificaciones;
     private Boolean estado;
     
@@ -29,11 +37,18 @@ public class Producto {
     private Double precioVenta;
     @Temporal(TemporalType.DATE)
     private Date alta;
-    @OneToOne
+    
+    
+    @OneToOne(cascade = CascadeType.ALL) // Propaga las operaciones de persistencia a la imagen
+    @JoinColumn(name = "imagen_principal_id", referencedColumnName = "id") 
     private Imagen imagenPrincipal;
+    
+        
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Imagen> galeriaImagenes = new ArrayList<>();
 
     public Producto() {
-        this.existencia = 0.0;
     }
 
     public String getCodigo() {
@@ -44,12 +59,44 @@ public class Producto {
         this.codigo = codigo;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getEtiqueta() {
+        return etiqueta;
+    }
+
+    public void setEtiqueta(String etiqueta) {
+        this.etiqueta = etiqueta;
+    }
+
+    public String getEspecificaciones() {
+        return especificaciones;
+    }
+
+    public void setEspecificaciones(String especificaciones) {
+        this.especificaciones = especificaciones;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
     public Rubro getRubro() {
@@ -100,46 +147,6 @@ public class Producto {
         this.alta = alta;
     }
 
-    public Imagen getImagen() {
-        return imagenPrincipal;
-    }
-
-    public void setImagen(Imagen imagenPrincipal) {
-        this.imagenPrincipal = imagenPrincipal;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEtiqueta() {
-        return etiqueta;
-    }
-
-    public void setEtiqueta(String etiqueta) {
-        this.etiqueta = etiqueta;
-    }
-
-    public String getEspecificaciones() {
-        return especificaciones;
-    }
-
-    public void setEspecificaciones(String especificaciones) {
-        this.especificaciones = especificaciones;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
-
     public Imagen getImagenPrincipal() {
         return imagenPrincipal;
     }
@@ -148,5 +155,18 @@ public class Producto {
         this.imagenPrincipal = imagenPrincipal;
     }
 
-   
+    public List<Imagen> getGaleriaImagenes() {
+        return galeriaImagenes;
+    }
+
+    public void setGaleriaImagenes(List<Imagen> galeriaImagenes) {
+        this.galeriaImagenes = galeriaImagenes;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", alta=" + alta + ", imagenPrincipal=" + imagenPrincipal + ", galeriaImagenes=" + galeriaImagenes + '}';
+    }
+
+    
 }
