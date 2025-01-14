@@ -12,6 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,11 +34,11 @@ public class Producto {
     @ManyToOne
     private SubRubro subRubro;
     private Double existencia;
-    private Double costo;
+    private BigDecimal costo;
     private Double precioVenta;
     @Temporal(TemporalType.DATE)
     private Date alta;
-    
+    private Integer cantidad;
     
     @OneToOne(cascade = CascadeType.ALL) // Propaga las operaciones de persistencia a la imagen
     @JoinColumn(name = "imagen_principal_id", referencedColumnName = "id") 
@@ -123,11 +124,11 @@ public class Producto {
         this.existencia = existencia;
     }
 
-    public Double getCosto() {
+    public BigDecimal getCosto() {
         return costo;
     }
 
-    public void setCosto(Double costo) {
+    public void setCosto(BigDecimal costo) {
         this.costo = costo;
     }
 
@@ -163,10 +164,19 @@ public class Producto {
         this.galeriaImagenes = galeriaImagenes;
     }
 
-    @Override
-    public String toString() {
-        return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", alta=" + alta + ", imagenPrincipal=" + imagenPrincipal + ", galeriaImagenes=" + galeriaImagenes + '}';
+    public Integer getCantidad() {
+        return cantidad;
     }
 
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", etiqueta=" + etiqueta + ", especificaciones=" + especificaciones + ", estado=" + estado + ", rubro=" + rubro + ", subRubro=" + subRubro + ", existencia=" + existencia + ", costo=" + costo + ", precioVenta=" + precioVenta + ", alta=" + alta + ", cantidad=" + cantidad + ", imagenPrincipal=" + imagenPrincipal + ", galeriaImagenes=" + galeriaImagenes + '}';
+    }
+
+    
     
 }

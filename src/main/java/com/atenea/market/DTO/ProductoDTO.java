@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import java.math.BigDecimal;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -20,8 +21,9 @@ public class ProductoDTO {
     private String rubroId;
     private String subRubroId;
     private Double existencia;
-    private Double costo;
+    private BigDecimal costo;
     private Double precioVenta;
+    private Integer cantidad;
   
     private String imagenPrincipal;
     
@@ -32,7 +34,7 @@ public class ProductoDTO {
         public ProductoDTO() {
     }
 
-    public ProductoDTO(String codigo, String nombre, String descripcion, String etiqueta, String especificaciones, Boolean estado, Double existencia, Double costo, Double precioVenta, List<String> galeriaImagenes) {
+    public ProductoDTO(String codigo, String nombre, String descripcion, String etiqueta, String especificaciones, Boolean estado, String rubroId, String subRubroId, Double existencia, BigDecimal costo, Double precioVenta, Integer cantidad, String imagenPrincipal, List<String> galeriaImagenes) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -44,9 +46,12 @@ public class ProductoDTO {
         this.existencia = existencia;
         this.costo = costo;
         this.precioVenta = precioVenta;
+        this.cantidad = cantidad;
         this.imagenPrincipal = imagenPrincipal;
         this.galeriaImagenes = galeriaImagenes;
     }
+
+
 
     public String getCodigo() {
         return codigo;
@@ -120,11 +125,11 @@ public class ProductoDTO {
         this.existencia = existencia;
     }
 
-    public Double getCosto() {
+    public BigDecimal getCosto() {
         return costo;
     }
 
-    public void setCosto(Double costo) {
+    public void setCosto(BigDecimal costo) {
         this.costo = costo;
     }
 
@@ -151,6 +156,16 @@ public class ProductoDTO {
     public void setGaleriaImagenes(List<String> galeriaImagenes) {
         this.galeriaImagenes = galeriaImagenes;
     }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+
 
     
     

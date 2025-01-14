@@ -89,7 +89,7 @@ public Producto obtenerProductoConGaleria(String codigo) {
         System.out.println("Imágenes obtenidas de la galería: " + galeriaImagenes.size()); // Cuántas imágenes se obtuvieron
 
         // 3. Definir la URL base para las imágenes
-        String baseUrl = "http://localhost:8080/market/productos/" + codigo + "/galeria/";
+        String baseUrl = "https://localhost:8443/market/productos/" + codigo + "/galeria/";
         System.out.println("URL base generada: " + baseUrl); // Verificar si la URL base está bien formada
 
         // 4. Asignar la URL completa para cada imagen en la galería

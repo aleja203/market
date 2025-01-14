@@ -20,12 +20,7 @@
 	<developers>
 		<developer/>
 	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+        
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -59,7 +54,16 @@
                     <groupId>com.mercadopago</groupId>
                     <artifactId>sdk-java</artifactId>
                     <version>2.1.29</version>
-                        <!--<type>jar</type>-->
+                        <type>jar</type>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-websocket</artifactId>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter</artifactId>
                 </dependency>
                 
 	</dependencies>
@@ -72,5 +76,13 @@
 			</plugin>
 		</plugins>
 	</build>
+        
+        <scm>
+            <url>https://github.com/mercadopago/sdk-java/tree/master</url>
+            <connection>scm:git:git://github.com/mercadopago/sdk-java.git</connection>
+            <developerConnection>scm:git:ssh://github.com:mercadopago/sdk-java.git</developerConnection>
+            <tag>HEAD</tag>
+        </scm>
 
 </project>
+

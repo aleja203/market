@@ -9,6 +9,7 @@ import com.atenea.market.Servicios.ImagenServicio;
 import com.atenea.market.Servicios.ProductoServicio;
 import com.atenea.market.Servicios.RubroServicio;
 import com.atenea.market.Servicios.SubRubroServicio;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,7 +55,7 @@ public class ProductoControlador {
             @RequestParam(value = "rubroId", required = false) String rubroId,
             @RequestParam(value = "subRubroId", required = false) String subRubroId,
             @RequestParam(value = "existencia", required = false) Double existencia,
-            @RequestParam(value = "costo", required = false) Double costo,
+            @RequestParam(value = "costo", required = false) BigDecimal costo,
             @RequestParam(value = "precioVenta", required = false) Double precioVenta,
             @RequestParam(value = "imagenPrincipal", required = false) MultipartFile imagenPrincipal,
             @RequestParam(value = "galeriaImagenes", required = false) List<MultipartFile> galeriaImagenes) {
